@@ -29,7 +29,7 @@ public class Kmoyennes {
 	/*
 	 * calculerKNombres
 	 */
-	private static List<Point> calculerKNombres(List<Point> pointsData, int k) {
+	private static List<Point> calculerKCoord(List<Point> pointsData, int k) {
 		List<Point> pointsK = new ArrayList<Point>();
 		int result;
 		
@@ -53,7 +53,7 @@ public class Kmoyennes {
 		try {		
 			BufferedReader in = new BufferedReader(new FileReader(new File(args[0])));
 			List<Point> pointsData = Point.parsePoints(in);
-			List<Point> pointsK = calculerKNombres(pointsData, k);
+			List<Point> pointsK = calculerKCoord(pointsData, k);
 			Kmoyennes problem = new Kmoyennes(pointsData);
 		} catch (IOException e) {
 			e.printStackTrace();
