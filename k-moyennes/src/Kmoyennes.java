@@ -27,23 +27,6 @@ public class Kmoyennes {
 	
 	
 	/*
-	 * Main  
-	 */
-	public static void main(String[] args) {
-		int k =  Integer.parseInt(args[1]);
-		
-		try {		
-			BufferedReader in = new BufferedReader(new FileReader(new File(args[0])));
-			List<Point> pointsData = Point.parsePoints(in);
-			List<Point> pointsK = calculerKNombres(pointsData, k);
-			Kmoyennes problem = new Kmoyennes(pointsData);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	/*
 	 * calculerKNombres
 	 */
 	private static List<Point> calculerKNombres(List<Point> pointsData, int k) {
@@ -59,5 +42,23 @@ public class Kmoyennes {
 		
 		return pointsK;
 	}
+	
+	
+	/*
+	 * Main  
+	 */
+	public static void main(String[] args) {
+		int k =  Integer.parseInt(args[1]);
+		
+		try {		
+			BufferedReader in = new BufferedReader(new FileReader(new File(args[0])));
+			List<Point> pointsData = Point.parsePoints(in);
+			List<Point> pointsK = calculerKNombres(pointsData, k);
+			Kmoyennes problem = new Kmoyennes(pointsData);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }
