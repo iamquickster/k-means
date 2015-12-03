@@ -9,12 +9,12 @@ public class Point {
 	/*
 	 * Variables globales
 	 */
-	int x, y;
+	float x, y;
 	
 	/*
 	 * Constructeur
 	 */
-	public Point(int x, int y) {
+	public Point(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -36,11 +36,36 @@ public class Point {
 	 * Parse
 	 */
 	private static Point parse(String p) {
-		int x = p.charAt(1) - '0';
-		int y = p.charAt(3) - '0';
+		int comma = p.indexOf(',');
+		int x = Integer.parseInt(p.substring(1, comma));
+		int y = Integer.parseInt(p.substring(comma + 1, p.length() - 1));
 		Point result = new Point(x, y);
 		
 		return result ;		
+	}
+
+	public double distance(Point p) {
+		return Math.sqrt(Math.pow(x-p.x, 2) + Math.pow(y-p.y, 2));
+	}	
+
+	public static Point center(List<Point> points) {
+		float xSum = 0;
+		float ySum = 0;
+		for(Point p : points) {
+			xSum += p.x;
+			ySum += p.y;
+		}
+		return new Point(xSum/points.size(), ySum/points.size());
+	}
+
+	public boolean equalsWithConfidence(Point point, double epsilon) {
+		
+		return Math.abs(point.x - x) < epsilon && Math.abs(point.y - y) < epsilon;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + x + "," + y + ")";
 	}
 	
 }
