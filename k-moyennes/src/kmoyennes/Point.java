@@ -1,7 +1,9 @@
+package kmoyennes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Point {
@@ -9,12 +11,12 @@ public class Point {
 	/*
 	 * Variables globales
 	 */
-	float x, y;
+	public double x, y;
 	
 	/*
 	 * Constructeur
 	 */
-	public Point(float x, float y) {
+	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -37,8 +39,8 @@ public class Point {
 	 */
 	private static Point parse(String p) {
 		int comma = p.indexOf(',');
-		int x = Integer.parseInt(p.substring(1, comma));
-		int y = Integer.parseInt(p.substring(comma + 1, p.length() - 1));
+		double x = Double.parseDouble(p.substring(1, comma));
+		double y = Double.parseDouble(p.substring(comma + 1, p.length() - 1));
 		Point result = new Point(x, y);
 		
 		return result ;		
@@ -49,8 +51,8 @@ public class Point {
 	}	
 
 	public static Point center(List<Point> points) {
-		float xSum = 0;
-		float ySum = 0;
+		double xSum = 0;
+		double ySum = 0;
 		for(Point p : points) {
 			xSum += p.x;
 			ySum += p.y;
@@ -59,6 +61,9 @@ public class Point {
 	}
 
 	public boolean equalsWithConfidence(Point point, double epsilon) {
+		if(point == null) {
+			return false;
+		}
 		
 		return Math.abs(point.x - x) < epsilon && Math.abs(point.y - y) < epsilon;
 	}
@@ -66,6 +71,16 @@ public class Point {
 	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
+	}
+
+	public static List<Point> generateRandomSet(int k) {
+		List<Point> result = new ArrayList<Point>();
+		Random r = new Random();
+		
+		for(int i = 0; i < k ;i++) {
+			result.add(new Point(r.nextDouble()*100, r.nextDouble()*100));
+		}
+		return result;
 	}
 	
 }

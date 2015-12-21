@@ -1,3 +1,4 @@
+package kmoyennes;
 
 public class NoDataException extends Exception {
 
