@@ -6,7 +6,7 @@ import java.util.List;
 
 public class KmoyenneTest {
 	public static void main(String[] args) {
-
+		KmoyenneTest.runTests();
 	}
 
 	private static Kmoyennes kTest(int k, int nbThreads) {
