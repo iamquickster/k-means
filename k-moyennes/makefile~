@@ -1,0 +1,13 @@
+all: compile
+
+compile:
+	javac -classpath .:./lib/jfreechart-1.0.19/*:./src/* -d bin src/kmoyennes/app/*
+
+tests:
+	java kmoyennes.KmoyenneTest
+mesure:
+	java kmoyennes.KMoyennesBenchmark
+graphics test:
+	java kmoyennes.app.KMoyenneController test
+graphics benchmark:
+	java kmoyennes.app.KMoyenneController benchmark
